@@ -142,7 +142,7 @@ public class VideoRender {
 				+ "-i \"" + outputPath + "_o.mp4\" "
 				+ "-c copy -bsf:v h264_mp4toannexb -f mpegts \"" + outputPath+"_pp.mp4\"";
 		String concatCmd2="echo y | ffmpeg "
-				+ "-i \"concat:\""+specs.getIntroPath()+"\"|\""+ outputPath+"_pp.mp4\" "
+				+ "-i \"concat:\""+specs.getIntroPath()+"\"|\""+ outputPath+"_pp.mp4\"\" "
 				+ "-c copy -bsf:a aac_adtstoasc \""+outputPath+".mp4\"";
 //		String concatCmd = "echo y | ffmpeg "
 //				+ "-i \"" + specs.getIntroPath() + "\"  "
