@@ -23,6 +23,13 @@ public class FileSelector extends JCheckBox implements Comparable<FileSelector>{
 
 	@Override
 	public int compareTo(FileSelector fs) {
-		return path.compareTo(fs.getTextName());
+		int file1=0, file2=0;
+		try {
+			file1 = Integer.parseInt(this.textName.split("\\.")[0]);
+			file2 = Integer.parseInt(fs.getTextName().split("\\.")[0]);
+		}catch(Exception ex){
+			
+		}
+		return file1-file2; 
 	}
 }

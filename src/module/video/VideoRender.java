@@ -79,7 +79,7 @@ public class VideoRender {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		bat.delete();
+//		bat.delete();
 	}
 	
 	private File createTextFile(File txtFile) {
@@ -135,20 +135,27 @@ public class VideoRender {
 				+":fontcolor=" + specs.getColor()+"'"
 				+":x=0:y=h-t*" + speed
 				+",format=yuv420p,scale=" + specs.getResolutionInString()
-				+" -t " + time 
-				+ " -preset ultrafast \"" +outputPath + ".mp4\"";
+				+",setsar=1:1 -t " + time 
+				+ " -vcodec libx264 -b:v 1000k -preset superfast \"" +outputPath + "_o.mp4\"";
 		
-		String concatCmd = "echo y | ffmpeg "
-				+ "-i \"" + specs.getIntroPath() + "\"  "
-				+ "-i \"" + outputPath + ".mp4\" "
-				+ "-filter_complex \"[0:v:0] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [v] [a]\"  -map \"[v]\" -map \"[a]\" \""
-				+ outputPath  + "_joined.mp4\" ";
+		String concatCmd1= "echo y | ffmpeg "
+				+ "-i \"" + outputPath + "_o\" "
+				+ "-c copy -bsf:v h264_mp4toannexb -f mpegts \"" + outputPath+"_pp.mp4\"";
+		String concatCmd2="echo y | ffmepg "
+				+ "-i \"concat:\""+specs.getIntroPath()+"\"|\""+ outputPath+"_pp.mp4\" "
+				+ "-c copy -bsf:a aac_adtstoasc \""+outputPath+".mp4\"";
+//		String concatCmd = "echo y | ffmpeg "
+//				+ "-i \"" + specs.getIntroPath() + "\"  "
+//				+ "-i \"" + outputPath + "_o.mp4\" "
+//				+ "-filter_complex \"[0:v:0] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [v] [a]\"  -map \"[v]\" -map \"[a]\" \""
+//				+ outputPath  + ".mp4\" ";
 //		System.out.println(cmd);
 		PrintWriter writer =null;
 		try {
 			writer = new PrintWriter(bat);
 			writer.println(cmd);
-			writer.println(concatCmd);
+			writer.println(concatCmd1);
+			writer.println(concatCmd2);
 			writer.println("exit");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

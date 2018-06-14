@@ -124,7 +124,7 @@ public class VideoSetting extends JPanel{
 	private String getIntroPath() throws IOException{
 		String path = introTf.getText();
 		if(!Validator.validatePath(path))
-			throw new IOException("Can not find the mp3 path!");
+			throw new IOException("Can not find the intro video path!");
 		return path;
 	}
 	

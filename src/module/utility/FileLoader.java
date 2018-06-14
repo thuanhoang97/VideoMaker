@@ -49,7 +49,7 @@ public class FileLoader {
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
 			String line = "";
-			br.read();
+//			br.read();
 			while((line=br.readLine())!=null) {
 				text.append(line).append(" ");
 			}
