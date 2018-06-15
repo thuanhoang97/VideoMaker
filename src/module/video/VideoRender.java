@@ -79,7 +79,7 @@ public class VideoRender {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		bat.delete();
+		bat.delete();
 	}
 	
 	private File createTextFile(File txtFile) {
