@@ -51,7 +51,10 @@ public class FileLoader {
 			String line = "";
 //			br.read();
 			while((line=br.readLine())!=null) {
-				text.append(line).append(" ");
+				if(line.length()==0)
+					text.append("$").append(" ");
+				else 
+					text.append(line).append(" ");
 			}
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -80,6 +83,10 @@ public class FileLoader {
 		String[] words = text.split(" ");
 		StringBuilder line = new StringBuilder();
 		for(int i=0; i<words.length; i++) {
+			if(words[i].equals("$")) {
+				lines.add("");
+				continue;
+			}
 			int lineW = fm.stringWidth(line.toString()) + fm.stringWidth(words[i] + " ");
 //			System.out.println(words[i]);
 //			System.out.println("lineW: " + lineW);
