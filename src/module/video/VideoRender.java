@@ -111,6 +111,7 @@ public class VideoRender {
 		double time;
 		if(specs.hasTime()) {
 			time = specs.getTime();
+			time += specs.getTimeRemain()*60;
 		}else {
 			int height = image.getHeight();
 			for(int i=0; i<lines.size();i++) {

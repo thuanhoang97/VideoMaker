@@ -23,6 +23,7 @@ public class VideoSpecs {
 	private int fontSize;
 	private float speed;
 	private double time;
+	private double timeRemain;
 	private Dimension resolution;
 	private String hexColor;
 	private String outputFolder;
@@ -78,6 +79,10 @@ public class VideoSpecs {
 		this.time = time;
 	}
 	
+	public void setTimeRemain(double timeRemain) {
+		this.timeRemain = timeRemain;
+	}
+	
 	public void setColor(String hexColor) {
 		this.hexColor = hexColor;
 	}
@@ -129,7 +134,9 @@ public class VideoSpecs {
 		return time;
 	}
 	
-	
+	public double getTimeRemain() {
+		return timeRemain;
+	}
 	
 	public boolean hasTime() {
 		return time>0;

@@ -62,6 +62,8 @@ public class VideoSetting extends JPanel{
 	private JCheckBox timeUse;
 	private JLabel timeLb;
 	private JTextField timeTf;
+	private JLabel timeRemainLb;
+	private JTextField timeRemainTf;
 	private JLabel outputFolderLb;
 	private JTextField outputFolderTf;
 	private JLabel colorLb;
@@ -86,7 +88,7 @@ public class VideoSetting extends JPanel{
 			if(videoSpecs.hasTime()) {
 				timeUse.setSelected(true);
 				timeTf.setText(String.valueOf(videoSpecs.getTime()));
-	
+				timeRemainTf.setText(String.valueOf(videoSpecs.getTimeRemain()));
 			}
 			if(videoSpecs.hasUseCustFont()) {
 				fontName.setEnabled(false);
@@ -372,9 +374,11 @@ public class VideoSetting extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				if(timeUse.isSelected()) {
 					timeTf.setEditable(true);
+					timeRemainTf.setEditable(true);
 					timeUnit.setEnabled(true);
 				}else {
 					timeTf.setEditable(false);
+					timeRemainTf.setEditable(false);
 					timeUnit.setEnabled(false);
 					
 				}
@@ -404,23 +408,33 @@ public class VideoSetting extends JPanel{
 		timeUnit.setEnabled(false);
 		add(timeUnit);
 		
+		timeRemainLb = new JLabel("Time Remain(s):");
+		timeRemainLb.setBounds(550, 90, 100, 20);
+		add(timeRemainLb);
+		
+		timeRemainTf = new JTextField();
+		timeRemainTf.setEditable(false);
+		timeRemainTf.setBounds(660, 90, 100, 20);
+		timeRemainTf.addKeyListener(new KeyCheck());
+		add(timeRemainTf);
+		
 		colorLb = new JLabel("Color:");
-		colorLb.setBounds(550, 90, 100,20);
+		colorLb.setBounds(550, 120, 100,20);
 		add(colorLb);
 		
 		colorTf = new JTextField();
 		colorTf.setText("#FFFFFF");
-		colorTf.setBounds(660, 90, 100,20);
+		colorTf.setBounds(660, 120, 100,20);
 		add(colorTf);
 		
 		resolutionLb = new JLabel("Resolution:");
-		resolutionLb.setBounds(550, 120, 100, 20);
+		resolutionLb.setBounds(550, 150, 100, 20);
 		add(resolutionLb);
 		
 		resolution = new JComboBox<String>(FileLoader.loadResolutions("res/resolutions.txt"));
 		resolution.setSelectedIndex(1);
 		
-		resolution.setBounds(660, 120, 150, 20);
+		resolution.setBounds(660, 150, 150, 20);
 		add(resolution);
 		
 		outputFolderLb = new JLabel("Output Folder:");
