@@ -111,7 +111,9 @@ public class VideoRender {
 		double time;
 		if(specs.hasTime()) {
 			time = specs.getTime();
-			time += specs.getTimeRemain()*60;
+			if(time < 10*60) {
+				time = 11*60;
+			}
 		}else {
 			int height = image.getHeight();
 			for(int i=0; i<lines.size();i++) {
@@ -134,7 +136,7 @@ public class VideoRender {
 				+":fontsize=" + specs.getFontSize()
 				+":textfile=\""  + file.getAbsolutePath().replaceAll("\\\\","/").replaceAll(":", "\\\\:") + "\""
 				+":fontcolor=" + specs.getColor()+"'"
-				+":x=0:y=h-t*" + speed
+				+":x=0:y=h-(t+"+specs.getTimeRemain()+")*" + speed
 				+",format=yuv420p,scale=" + specs.getResolutionInString()
 				+",setsar=1:1 -t " + time 
 				+ " -vcodec libx264 -b:v 1000k -preset superfast \"" +outputPath + "_o.mp4\"";
