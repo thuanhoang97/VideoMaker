@@ -62,8 +62,6 @@ public class VideoSetting extends JPanel{
 	private JCheckBox timeUse;
 	private JLabel timeLb;
 	private JTextField timeTf;
-	private JLabel timeRemainLb;
-	private JTextField timeRemainTf;
 	private JLabel outputFolderLb;
 	private JTextField outputFolderTf;
 	private JLabel colorLb;
@@ -88,7 +86,6 @@ public class VideoSetting extends JPanel{
 			if(videoSpecs.hasTime()) {
 				timeUse.setSelected(true);
 				timeTf.setText(String.valueOf(videoSpecs.getTime()));
-				timeRemainTf.setText(String.valueOf(videoSpecs.getTimeRemain()));
 			}
 			if(videoSpecs.hasUseCustFont()) {
 				fontName.setEnabled(false);
@@ -374,11 +371,9 @@ public class VideoSetting extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				if(timeUse.isSelected()) {
 					timeTf.setEditable(true);
-					timeRemainTf.setEditable(true);
 					timeUnit.setEnabled(true);
 				}else {
 					timeTf.setEditable(false);
-					timeRemainTf.setEditable(false);
 					timeUnit.setEnabled(false);
 					
 				}
@@ -407,16 +402,7 @@ public class VideoSetting extends JPanel{
 		timeUnit.setSelectedItem("second");
 		timeUnit.setEnabled(false);
 		add(timeUnit);
-		
-		timeRemainLb = new JLabel("Time Remain(s):");
-		timeRemainLb.setBounds(550, 90, 100, 20);
-		add(timeRemainLb);
-		
-		timeRemainTf = new JTextField();
-		timeRemainTf.setEditable(false);
-		timeRemainTf.setBounds(660, 90, 100, 20);
-		timeRemainTf.addKeyListener(new KeyCheck());
-		add(timeRemainTf);
+
 		
 		colorLb = new JLabel("Color:");
 		colorLb.setBounds(550, 120, 100,20);
