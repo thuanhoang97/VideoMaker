@@ -136,7 +136,8 @@ public class VideoRender {
 				+":fontsize=" + specs.getFontSize()
 				+":textfile=\""  + file.getAbsolutePath().replaceAll("\\\\","/").replaceAll(":", "\\\\:") + "\""
 				+":fontcolor=" + specs.getColor()+"'"
-				+":x=0:y=h+" + (lines.size()* fm.stringWidth(lines.get(0))) +"-t*" + speed
+//				+":x=0:y=h-t*" + speed
+				+":x=0:y=h-20*t+4*t"
 				+",format=yuv420p,scale=" + specs.getResolutionInString()
 				+",setsar=1:1 -t " + time 
 				+ " -vcodec libx264 -b:v 1000k -preset superfast \"" +outputPath + "_o.mp4\"";
